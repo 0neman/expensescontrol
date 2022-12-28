@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       home: MyHomePage(),
+      theme: ThemeData(primarySwatch: Colors.indigo),
     );
   }
 }
@@ -59,7 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       appBar: AppBar(
         title: Text('Flutter App'),
-        backgroundColor: Colors.pinkAccent,
       ),
       body: SingleChildScrollView(
         child: Column(

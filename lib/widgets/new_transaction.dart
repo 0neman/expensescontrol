@@ -59,7 +59,7 @@ class _NewTransactionState extends State<NewTransaction> {
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.all(10),
-                foregroundColor: Colors.pinkAccent,
+                foregroundColor: Theme.of(context).primaryColor,
               ),
               child: Text("Add an expense"),
             ),

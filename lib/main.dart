@@ -56,7 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           _startAddNewTransaction(context);
         },
-        backgroundColor: Colors.pinkAccent,
       ),
       appBar: AppBar(
         title: Text('Flutter App'),

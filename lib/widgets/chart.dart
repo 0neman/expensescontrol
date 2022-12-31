@@ -14,9 +14,9 @@ class Chart extends StatelessWidget {
       final weekDay = DateTime.now().subtract(Duration(days: index));
       var sum = 0.0;
       for (int i = 0; i < recentTransactions.length; i++) {
-        if (recentTransactions[i].date.day == DateTime.now().day &&
-            recentTransactions[i].date.month == DateTime.now().month &&
-            recentTransactions[i].date.year == DateTime.now().year) {
+        if (recentTransactions[i].date.day == weekDay.day &&
+            recentTransactions[i].date.month == weekDay.month &&
+            recentTransactions[i].date.year == weekDay.year) {
           sum += recentTransactions[i].amount;
         }
       }
@@ -37,7 +37,7 @@ class Chart extends StatelessWidget {
       margin: EdgeInsets.all(10),
       child: Row(
         children: groupedTransactionValues.map((e) {
-          return Text("${e['amount']}:${e['day']}");
+          return Text("${e['day']}:${e['amount']}");
         }).toList(),
       ),
     );

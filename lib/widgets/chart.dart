@@ -44,7 +44,9 @@ class Chart extends StatelessWidget {
           return ChartBar(
               label: (e['day'] as String),
               spendingAmount: e['amount'] as double,
-              spendingPctOfTotal: (e['amount'] as double) / maxSpending);
+              spendingPctOfTotal: maxSpending == 0.0
+                  ? 0.0
+                  : (e['amount'] as double) / maxSpending);
         }).toList(),
       ),
     );

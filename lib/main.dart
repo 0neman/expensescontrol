@@ -36,18 +36,19 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String title, double amount) {
+  void _addNewTransaction(String title, double amount, DateTime chosendate) {
     final newTx = Transaction(
         id: DateTime.now().toString(),
         title: title,
         amount: amount,
-        date: DateTime.now());
+        date: chosendate);
 
     setState(() {
       _userTransaction.add(newTx);
     });
   }
 
+  void deleteTransaction() {}
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -69,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       appBar: AppBar(
         title: Text(
-          'Flutter App',
+          'Personal Expenses',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),

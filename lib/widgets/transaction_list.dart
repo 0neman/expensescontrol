@@ -1,5 +1,6 @@
 import 'package:expensescontrol/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
@@ -13,24 +14,26 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: transactions.isEmpty
-          ? Column(children: [
-              Text(
-                "no expenses added",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+          ? LayoutBuilder(builder: (context, Constraints) {
+              return Column(children: [
+                Text(
+                  "no expenses added",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                  height: 250,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.cover,
-                  )),
-            ])
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    height: Constraints.maxHeight * 0.5,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.cover,
+                    )),
+              ]);
+            })
           : ListView.builder(
               itemBuilder: (context, index) {
                 return Card(

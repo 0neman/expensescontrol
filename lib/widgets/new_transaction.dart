@@ -51,16 +51,13 @@ class _NewTransactionState extends State<NewTransaction> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      child: Container(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          child: Column(
+            children: [
+              TextField(
                 onSubmitted: (_) => _submitData(),
                 decoration: InputDecoration(
                   label: Text(
@@ -70,48 +67,51 @@ class _NewTransactionState extends State<NewTransaction> {
                 /* onChanged: (value) => titleInput = value,  */
                 controller: _titleEditController,
               ),
-            ),
-            TextField(
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _submitData(),
-              decoration: InputDecoration(
-                label: Text("Amount"),
+              SizedBox(
+                height: 8,
               ),
-              /* onChanged: ((value) => amountInput = value),*/
-              controller: _amountEditController,
-            ),
-            Container(
-              height: 80,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(_selectedDate == null
-                        ? "enter a date"
-                        : "picked date ${(DateFormat.yMd().format(_selectedDate!))}"),
-                  ),
-                  TextButton(
-                    onPressed: _presentdatepicker,
-                    child: Text("add a date"),
-                  ),
-                ],
+              TextField(
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _submitData(),
+                decoration: InputDecoration(
+                  label: Text("Amount"),
+                ),
+                /* onChanged: ((value) => amountInput = value),*/
+                controller: _amountEditController,
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _submitData();
-              },
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.all(10),
-                foregroundColor: Theme.of(context).primaryColor,
-              ),
-              child: Text(
-                "Add an expense",
-                style: TextStyle(
-                  color: Colors.white,
+              Container(
+                height: 80,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(_selectedDate == null
+                          ? "enter a date"
+                          : "picked date ${(DateFormat.yMd().format(_selectedDate!))}"),
+                    ),
+                    TextButton(
+                      onPressed: _presentdatepicker,
+                      child: Text("add a date"),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  _submitData();
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(10),
+                  foregroundColor: Theme.of(context).primaryColor,
+                ),
+                child: Text(
+                  "Add an expense",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

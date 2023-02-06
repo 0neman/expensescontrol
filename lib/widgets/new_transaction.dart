@@ -52,18 +52,24 @@ class _NewTransactionState extends State<NewTransaction> {
     return Card(
       elevation: 10,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(
-              onSubmitted: (_) => _submitData(),
-              decoration: InputDecoration(
-                label: Text(
-                  "title",
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 13),
+              child: TextField(
+                onSubmitted: (_) => _submitData(),
+                decoration: InputDecoration(
+                  label: Text(
+                    "title",
+                  ),
                 ),
+                /* onChanged: (value) => titleInput = value,  */
+                controller: _titleEditController,
               ),
-              /* onChanged: (value) => titleInput = value,  */
-              controller: _titleEditController,
             ),
             TextField(
               keyboardType: TextInputType.number,

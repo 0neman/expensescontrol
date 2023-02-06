@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
 import './widgets/transaction_list.dart';
@@ -84,6 +87,16 @@ class _MyHomePageState extends State<MyHomePage> {
           fontWeight: FontWeight.bold,
         ),
       ),
+      actions: [
+        Platform.isAndroid
+            ? Container()
+            : IconButton(
+                onPressed: () {
+                  _startAddNewTransaction(context);
+                },
+                icon: Icon(Icons.add),
+              )
+      ],
     );
     final userTransaction = Container(
         height: (mediaQuery.size.height -
@@ -108,7 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: [
                   Text("Show Chart"),
-                  Switch(
+                  Switch.adaptive(
+                    activeColor: Theme.of(context).primaryColorLight,
                     value: _showChart,
                     onChanged: (value) {
                       setState(() {

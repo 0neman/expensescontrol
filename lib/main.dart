@@ -108,12 +108,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          _startAddNewTransaction(context);
-        },
-      ),
+      floatingActionButton: Platform.isAndroid
+          ? FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                _startAddNewTransaction(context);
+              },
+            )
+          : Container(),
       body: SingleChildScrollView(
         child: Column(
           children: [

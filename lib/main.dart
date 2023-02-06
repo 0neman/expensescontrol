@@ -84,6 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text("Personal Expenses"),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onTap: () => _startAddNewTransaction(context),
+                  child: Icon(CupertinoIcons.add),
+                )
+              ],
+            ),
           )
         : AppBar(
             title: Text(
@@ -109,46 +118,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 mediaQuery.padding.top) *
             0.7,
         child: TransactionList(_userTransaction, deleteTransaction));
-    final AppBody = SingleChildScrollView(
-      child: Column(
-        children: [
-          if (isLandScape)
-            Row(
-              children: [
-                Text("Show Chart"),
-                Switch.adaptive(
-                  activeColor: Theme.of(context).primaryColorLight,
-                  value: _showChart,
-                  onChanged: (value) {
-                    setState(() {
-                      _showChart = value;
-                    });
-                  },
-                )
-              ],
-            ),
-          if (!isLandScape)
-            Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(_recentTransactions)),
-          if (!isLandScape) userTransaction,
-          if (isLandScape)
-            _showChart
-                ? Container(
-                    height: (mediaQuery.size.height -
-                            appBar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.6,
-                    child: Chart(_recentTransactions))
-                : userTransaction,
-        ],
+    final pageBody = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            if (isLandScape)
+              Row(
+                children: [
+                  Text("Show Chart"),
+                  Switch.adaptive(
+                    activeColor: Theme.of(context).primaryColorLight,
+                    value: _showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        _showChart = value;
+                      });
+                    },
+                  )
+                ],
+              ),
+            if (!isLandScape)
+              Container(
+                  height: (mediaQuery.size.height -
+                          appBar.preferredSize.height -
+                          mediaQuery.padding.top) *
+                      0.3,
+                  child: Chart(_recentTransactions)),
+            if (!isLandScape) userTransaction,
+            if (isLandScape)
+              _showChart
+                  ? Container(
+                      height: (mediaQuery.size.height -
+                              appBar.preferredSize.height -
+                              mediaQuery.padding.top) *
+                          0.6,
+                      child: Chart(_recentTransactions))
+                  : userTransaction,
+          ],
+        ),
       ),
     );
     return Platform.isIOS
-        ? CupertinoPageScaffold(child: AppBody)
+        ? CupertinoPageScaffold(child: pageBody)
         : Scaffold(
             appBar: appBar,
             floatingActionButtonLocation:
@@ -161,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   )
                 : Container(),
-            body: AppBody,
+            body: pageBody,
           );
   }
 }

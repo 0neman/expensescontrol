@@ -59,7 +59,7 @@ class _NewTransactionState extends State<NewTransaction> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 13),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 onSubmitted: (_) => _submitData(),
                 decoration: InputDecoration(

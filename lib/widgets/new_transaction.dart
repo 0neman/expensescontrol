@@ -53,8 +53,8 @@ class _NewTransactionState extends State<NewTransaction> {
       elevation: 10,
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Column(
             children: [
               TextField(
